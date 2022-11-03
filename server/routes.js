@@ -9,22 +9,7 @@ const mensajes = [
   _id: 'XXX',
   user: 'spiderman',
   mensaje: 'Hola spiderman' 
-  },
-  {
-    _id: 'XXX',
-    user: 'hulk',
-    mensaje: 'Hola hulk' 
-  },
-  {
-    _id: 'XXX',
-    user: 'thor',
-    mensaje: 'Hola thor' 
-  },
-  {
-    _id: 'XXX',
-    user: 'ironman',
-    mensaje: 'Hola ironman' 
-  },
+  }
 
 ];
 
