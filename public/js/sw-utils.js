@@ -45,13 +45,20 @@ function manejoApiMensajes( cacheName, req ) {
 
     if ( req.clone().method === 'POST' ) {
 
-        req.clone().text().then( body => {
+        if ( self.register.sync ) {
 
-            //console.log(body);
-            const bodyObj = JSON.parse(body);
-            guardarMensaje( bodyObj );
+            req.clone().text().then( body => {
 
-        });
+                //console.log(body);
+                const bodyObj = JSON.parse(body);
+                guardarMensaje( bodyObj );
+    
+            });
+        } else {
+            return fetch( req );        
+        }
+
+        
 
         return fetch( req );
 
