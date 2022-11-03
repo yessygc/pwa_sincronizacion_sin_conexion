@@ -8,6 +8,11 @@ const publicPath = path.resolve(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 // Directorio Público
 app.use(express.static(publicPath));
 
