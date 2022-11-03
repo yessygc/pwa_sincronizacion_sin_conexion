@@ -41,20 +41,31 @@ function actualizaCacheStatico( staticCache, req, APP_SHELL_INMUTABLE ) {
 
 
 //Network with cache fallback / update
-function manejoApiMensajes( dunamicCache, req ) {
+function manejoApiMensajes( cacheName, req ) {
 
-    fetch( req ).then( res => {
+    if ( req.clone().method === 'POST' ) {
 
-        if ( res.ok ) {
-            actualizaCacheDinamico( cacheName, req, res.clone() );
-            return res.clone();
-        } else {
+        return fetch( req );
+
+    } else {
+
+
+        return fetch( req ).then( res => {
+
+            if ( res.ok ) {
+                actualizaCacheDinamico( cacheName, req, res.clone() );
+                return res.clone();
+            } else {
+                return caches.match( req );
+            }
+        }).catch( err => {
+    
             return caches.match( req );
-        }
-    }).catch( err => {
+        });
 
-        return caches.match( req );
-    });
+    }
+
+    
 
 }
 
